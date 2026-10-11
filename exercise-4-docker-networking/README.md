@@ -1,4 +1,4 @@
-# Exercise 3 — Docker Networking with Multiple Containers
+# Exercise 4 — Docker Networking with Multiple Containers
 
 ## Objective
 Connect a Flask API, MySQL, and Redis on a user-defined Docker bridge network and prove
