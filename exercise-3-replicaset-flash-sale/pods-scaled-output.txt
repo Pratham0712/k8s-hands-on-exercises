@@ -1,0 +1,6 @@
+NAME                 READY   STATUS    RESTARTS   AGE     IP           NODE       NOMINATED NODE   READINESS GATES
+flashsale-rs-94k5d   1/1     Running   0          17s     10.244.0.6   minikube   <none>           <none>
+flashsale-rs-dwg7p   1/1     Running   0          4m37s   10.244.0.3   minikube   <none>           <none>
+flashsale-rs-g4xfp   1/1     Running   0          4m37s   10.244.0.4   minikube   <none>           <none>
+flashsale-rs-jqxkw   1/1     Running   0          17s     10.244.0.7   minikube   <none>           <none>
+flashsale-rs-lf7jf   1/1     Running   0          4m37s   10.244.0.5   minikube   <none>           <none>
