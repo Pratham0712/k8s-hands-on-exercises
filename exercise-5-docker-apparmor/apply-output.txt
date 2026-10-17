@@ -1,0 +1,57 @@
+Building image...
+Step 1/6 : FROM python:3.12-slim
+ ---> a6e34c598f24
+Step 2/6 : WORKDIR /app
+ ---> Running in 4dd8251a0a9b
+ ---> Removed intermediate container 4dd8251a0a9b
+ ---> 6b16e1730970
+Step 3/6 : COPY app.py /app/
+ ---> 4b8528cdce85
+Step 4/6 : RUN pip install --no-cache-dir "flask>=3,<4"
+ ---> Running in 835bbec662b4
+Collecting flask<4,>=3
+  Downloading flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+Collecting blinker>=1.9.0 (from flask<4,>=3)
+  Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+Collecting click>=8.1.3 (from flask<4,>=3)
+  Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting itsdangerous>=2.2.0 (from flask<4,>=3)
+  Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+Collecting jinja2>=3.1.2 (from flask<4,>=3)
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting markupsafe>=2.1.1 (from flask<4,>=3)
+  Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Collecting werkzeug>=3.1.0 (from flask<4,>=3)
+  Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+Downloading flask-3.1.3-py3-none-any.whl (103 kB)
+Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+Downloading click-8.5.0-py3-none-any.whl (125 kB)
+Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+Installing collected packages: markupsafe, itsdangerous, click, blinker, werkzeug, jinja2, flask
+Successfully installed blinker-1.9.0 click-8.5.0 flask-3.1.3 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.4 werkzeug-3.1.9
+[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[0m[91m
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: pip install --upgrade pip
+[0m ---> Removed intermediate container 835bbec662b4
+ ---> d7b52e5cea58
+Step 5/6 : EXPOSE 5000
+ ---> Running in 63e1fcf867b0
+ ---> Removed intermediate container 63e1fcf867b0
+ ---> 8f25360a5217
+Step 6/6 : CMD ["python", "app.py"]
+ ---> Running in a832fe124c01
+ ---> Removed intermediate container a832fe124c01
+ ---> 00e851c695e4
+Successfully built 00e851c695e4
+Successfully tagged flask-apparmor:latest
+
+Running container with AppArmor profile...
+Container started: ec51f5d15115
+Requested (HostConfig.SecurityOpt): ['apparmor=my-apparmor-profile']
+Applied   (AppArmorProfile)       : 'my-apparmor-profile'
+RESULT: profile is enforced
+Stopping and removing the container...

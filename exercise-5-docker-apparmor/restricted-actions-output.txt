@@ -1,0 +1,16 @@
+
+=== With my-apparmor-profile ===
+[PASS] Confinement label  exit=0    expected=0    my-apparmor-profile (enforce)
+[PASS] Read own app file  exit=0    expected=0    ok
+[PASS] Read /etc/passwd   exit=1    expected=1    PermissionError: [Errno 13] Permission denied: '/etc/passwd'
+[PASS] Write /etc/x       exit=1    expected=1    PermissionError: [Errno 13] Permission denied: '/etc/x'
+[PASS] Python spawns bash exit=1    expected=1    PermissionError: [Errno 13] Permission denied: '/bin/bash'
+[PASS] Bash execs id      exit=126  expected=126  /bin/bash: line 1: /usr/bin/id: Permission denied
+
+=== Unconfined (control) ===
+[PASS] Confinement label  exit=0    expected=0    unconfined
+[PASS] Read own app file  exit=0    expected=0    ok
+[DIFF] Read /etc/passwd   exit=0    expected=1    
+[DIFF] Write /etc/x       exit=0    expected=1    
+[DIFF] Python spawns bash exit=0    expected=1    pwned
+[DIFF] Bash execs id      exit=0    expected=126  uid=0(root) gid=0(root) groups=0(root)

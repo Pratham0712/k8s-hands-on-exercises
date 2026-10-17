@@ -1,0 +1,28 @@
+#include <tunables/global>
+
+profile my-apparmor-profile flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  # Baseline: allow normal operation, then carve out denies (deny always wins)
+  file,
+  network inet stream,
+  network inet6 stream,
+  capability,
+
+  # Let `docker stop` deliver SIGTERM to the container
+  signal (receive) peer=unconfined,
+  signal (send,receive) peer=my-apparmor-profile,
+
+  # Sensitive files: targeted denies, so the runtime itself doesn't break
+  deny /etc/{passwd,shadow,gshadow,group} r,
+  deny /etc/** w,
+  deny /var/** rw,
+
+  # No shells or system binaries (python lives in /usr/local/bin, so it's unaffected)
+  deny /{,usr/}{,s}bin/** x,
+
+  # Dangerous kernel surfaces
+  deny capability sys_admin,
+  deny mount,
+  deny /proc/sys/kernel/** w,
+}
