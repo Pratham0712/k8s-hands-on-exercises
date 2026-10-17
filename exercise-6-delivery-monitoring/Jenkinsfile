@@ -1,0 +1,106 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(name: 'SCENARIO', choices: ['normal', 'incident'],
+               description: 'normal = no alerts, incident = both alerts fire')
+    }
+
+    environment {
+        SRC = '/src'
+        NET = 'monitoring'
+    }
+
+    stages {
+        stage('Pre-check Docker') {
+            steps {
+                sh '''
+                    docker --version
+                    docker info --format 'Daemon version: {{.ServerVersion}}'
+                '''
+            }
+        }
+
+        stage('Setup Workspace') {
+            steps {
+                sh '''
+                    cp "$SRC"/delivery_metrics.py "$SRC"/Dockerfile "$SRC"/.dockerignore \
+                       "$SRC"/prometheus.yml "$SRC"/alert_rules.yml "$SRC"/Dockerfile.prometheus \
+                       "$SRC"/grafana-datasource.yml "$SRC"/Dockerfile.grafana \
+                       "$WORKSPACE"/
+                    ls -la "$WORKSPACE"
+                '''
+            }
+        }
+
+        stage('Build Images') {
+            steps {
+                sh '''
+                    docker build -t delivery-metrics:latest -t delivery-metrics:$BUILD_NUMBER .
+                    docker build -t delivery-prometheus:latest -t delivery-prometheus:$BUILD_NUMBER -f Dockerfile.prometheus .
+                    docker build -t delivery-grafana:latest -t delivery-grafana:$BUILD_NUMBER -f Dockerfile.grafana .
+                '''
+            }
+        }
+
+        stage('Validate Prometheus Config') {
+            steps {
+                sh 'docker run --rm --entrypoint promtool delivery-prometheus:latest check config /etc/prometheus/prometheus.yml'
+            }
+        }
+
+        stage('Deploy Stack') {
+            steps {
+                sh '''
+                    docker network inspect "$NET" >/dev/null 2>&1 || docker network create "$NET"
+                    docker rm -f delivery-metrics prometheus grafana 2>/dev/null || true
+
+                    docker run -d --name delivery-metrics --network "$NET" -p 8000:8000 \
+                        -e SCENARIO="$SCENARIO" delivery-metrics:latest
+                    docker run -d --name prometheus --network "$NET" -p 9090:9090 \
+                        delivery-prometheus:latest
+                    docker run -d --name grafana --network "$NET" -p 3000:3000 \
+                        -v grafana-data:/var/lib/grafana delivery-grafana:latest
+                '''
+            }
+        }
+
+        stage('Smoke Test') {
+            steps {
+                sh '''
+                    # Jenkins' own localhost is not the app's, so test from INSIDE the network
+                    for i in $(seq 1 20); do
+                        if docker exec prometheus wget -qO- http://delivery-metrics:8000/metrics | grep -q '^pending_deliveries'; then
+                            echo "Metrics endpoint OK"; break
+                        fi
+                        [ "$i" = 20 ] && { echo "Metrics never came up"; exit 1; }
+                        sleep 3
+                    done
+
+                    for i in $(seq 1 20); do
+                        if docker exec prometheus wget -qO- http://localhost:9090/api/v1/targets | grep -q '"health":"up"'; then
+                            echo "Prometheus scraping OK"; break
+                        fi
+                        [ "$i" = 20 ] && { echo "Targets never went UP"; exit 1; }
+                        sleep 3
+                    done
+
+                    docker exec prometheus wget -qO- http://grafana:3000/api/health
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Deployed SCENARIO=${params.SCENARIO}. Prometheus :9090 | Grafana :3000 | Metrics :8000"
+        }
+        failure {
+            sh '''
+                for c in delivery-metrics prometheus grafana; do
+                    echo "===== $c logs ====="; docker logs --tail 30 $c 2>&1 || true
+                done
+            '''
+        }
+    }
+}

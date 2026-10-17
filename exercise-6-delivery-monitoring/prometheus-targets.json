@@ -1,0 +1,64 @@
+{
+    "status": "success",
+    "data": {
+        "activeTargets": [
+            {
+                "discoveredLabels": {
+                    "__address__": "delivery-metrics:8000",
+                    "__always_scrape_classic_histograms__": "false",
+                    "__convert_classic_histograms_to_nhcb__": "false",
+                    "__metrics_path__": "/metrics",
+                    "__scheme__": "http",
+                    "__scrape_interval__": "5s",
+                    "__scrape_native_histograms__": "false",
+                    "__scrape_timeout__": "5s",
+                    "job": "delivery_service"
+                },
+                "labels": {
+                    "instance": "delivery-metrics:8000",
+                    "job": "delivery_service"
+                },
+                "scrapePool": "delivery_service",
+                "scrapeUrl": "http://delivery-metrics:8000/metrics",
+                "globalUrl": "http://delivery-metrics:8000/metrics",
+                "lastError": "",
+                "lastScrape": "2026-10-17T22:36:03.9190691Z",
+                "lastScrapeDuration": 0.009557607,
+                "health": "up",
+                "scrapeInterval": "5s",
+                "scrapeTimeout": "5s"
+            },
+            {
+                "discoveredLabels": {
+                    "__address__": "localhost:9090",
+                    "__always_scrape_classic_histograms__": "false",
+                    "__convert_classic_histograms_to_nhcb__": "false",
+                    "__metrics_path__": "/metrics",
+                    "__scheme__": "http",
+                    "__scrape_interval__": "5s",
+                    "__scrape_native_histograms__": "false",
+                    "__scrape_timeout__": "5s",
+                    "job": "prometheus"
+                },
+                "labels": {
+                    "instance": "localhost:9090",
+                    "job": "prometheus"
+                },
+                "scrapePool": "prometheus",
+                "scrapeUrl": "http://localhost:9090/metrics",
+                "globalUrl": "http://8c86e8486775:9090/metrics",
+                "lastError": "",
+                "lastScrape": "2026-10-17T22:36:06.398701675Z",
+                "lastScrapeDuration": 0.008327215,
+                "health": "up",
+                "scrapeInterval": "5s",
+                "scrapeTimeout": "5s"
+            }
+        ],
+        "droppedTargets": [],
+        "droppedTargetCounts": {
+            "delivery_service": 0,
+            "prometheus": 0
+        }
+    }
+}

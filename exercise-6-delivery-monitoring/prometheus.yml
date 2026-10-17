@@ -1,0 +1,15 @@
+global:
+  scrape_interval: 5s       # app updates every 1s; the default 15s misses most changes
+  evaluation_interval: 5s   # how often alert rules are checked
+
+rule_files:
+  - /etc/prometheus/alert_rules.yml
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "delivery_service"
+    static_configs:
+      - targets: ["delivery-metrics:8000"]   # container name, resolved by Docker DNS
