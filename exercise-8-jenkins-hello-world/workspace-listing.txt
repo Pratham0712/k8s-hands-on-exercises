@@ -1,0 +1,5 @@
+total 16
+drwxr-xr-x 3 jenkins jenkins 4096 Oct 18 21:17 .
+drwxr-xr-x 5 jenkins jenkins 4096 Oct 18 21:11 ..
+drwxr-xr-x 8 jenkins jenkins 4096 Oct 18 21:17 .git
+-rwxr-xr-x 1 jenkins jenkins   35 Oct 18 21:17 hello-world.sh

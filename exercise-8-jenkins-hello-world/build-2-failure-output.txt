@@ -1,0 +1,24 @@
+Started by user Pratham Patil
+
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/HelloWorld
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/HelloWorld/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Pratham0712/devops-sample-code.git # timeout=10
+Fetching upstream changes from https://github.com/Pratham0712/devops-sample-code.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/Pratham0712/devops-sample-code.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 846d3b0f77f7858d6a67dd932d3d28f4527f4c02 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 846d3b0f77f7858d6a67dd932d3d28f4527f4c02 # timeout=10
+Commit message: "Deliberately fail build (exit 1)"
+ > git rev-list --no-walk 83abb536ae7a90d144c9e59f6dc70c55f0b9ed06 # timeout=10
+[HelloWorld] $ /bin/sh -xe /tmp/jenkins1979088134698699344.sh
++ sh hello-world.sh
+Hello, Jenkins!
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE
