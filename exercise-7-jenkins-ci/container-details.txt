@@ -1,0 +1,13 @@
+CONTAINER ID   IMAGE                 COMMAND                  CREATED              STATUS              PORTS                                                                                          NAMES
+bf345026e9b0   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   About a minute ago   Up About a minute   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 0.0.0.0:50000->50000/tcp, [::]:50000->50000/tcp   jenkins
+[
+    {
+        "CreatedAt": "2026-10-18T09:59:09Z",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/jenkins_home_ex7/_data",
+        "Name": "jenkins_home_ex7",
+        "Options": null,
+        "Scope": "local"
+    }
+]

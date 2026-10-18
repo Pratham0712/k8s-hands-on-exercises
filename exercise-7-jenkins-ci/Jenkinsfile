@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/Pratham0712/k8s-hands-on-exercises.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'echo "Building..." && ls -la'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'test -f exercise-2-flask-app/README.md && echo "Ex2 README present: PASS"'
+            }
+        }
+    }
+    post {
+        success { echo 'CI pipeline passed' }
+        failure { echo 'CI pipeline failed' }
+    }
+}
