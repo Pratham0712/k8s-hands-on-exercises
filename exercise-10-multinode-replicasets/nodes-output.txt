@@ -1,0 +1,4 @@
+NAME                   STATUS   ROLES           AGE   VERSION   INTERNAL-IP    EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION                      CONTAINER-RUNTIME
+devops-multinode       Ready    control-plane   49m   v1.35.1   192.168.49.2   <none>        Debian GNU/Linux 12 (bookworm)   6.18.54.1-microsoft-standard-WSL2   docker://29.2.1
+devops-multinode-m02   Ready    <none>          46m   v1.35.1   192.168.49.3   <none>        Debian GNU/Linux 12 (bookworm)   6.18.54.1-microsoft-standard-WSL2   docker://29.2.1
+devops-multinode-m03   Ready    <none>          42m   v1.35.1   192.168.49.4   <none>        Debian GNU/Linux 12 (bookworm)   6.18.54.1-microsoft-standard-WSL2   docker://29.2.1

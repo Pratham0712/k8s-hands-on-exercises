@@ -1,0 +1,58 @@
+### GET /products
+
+### GET /cart (initial)
+[]
+
+### POST /cart
+[{"id":1,"name":"Laptop","quantity":1}]
+
+### GET /cart x8
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[{"id":1,"name":"Laptop","quantity":1}]
+
+[]
+
+[{"id":1,"name":"Laptop","quantity":1}]
+
+[pod/shopping-cart-7bf585c6f8-g4mrw/shopping-cart-container]  * Serving Flask app 'shopping_cart'
+[pod/shopping-cart-7bf585c6f8-g4mrw/shopping-cart-container]  * Debug mode: off
+[pod/shopping-cart-7bf585c6f8-g4mrw/shopping-cart-container] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+[pod/shopping-cart-7bf585c6f8-g4mrw/shopping-cart-container]  * Running on all addresses (0.0.0.0)
+[pod/shopping-cart-7bf585c6f8-g4mrw/shopping-cart-container]  * Running on http://127.0.0.1:80
+[pod/shopping-cart-7bf585c6f8-g4mrw/shopping-cart-container]  * Running on http://10.244.2.2:80
+[pod/shopping-cart-7bf585c6f8-g4mrw/shopping-cart-container] [33mPress CTRL+C to quit[0m
+[pod/shopping-cart-7bf585c6f8-g4mrw/shopping-cart-container] 192.168.49.2 - - [19/Oct/2026 09:44:42] "[33mGET /products HTTP/1.1[0m" 404 -
+[pod/shopping-cart-7bf585c6f8-g4mrw/shopping-cart-container] 192.168.49.2 - - [19/Oct/2026 09:48:36] "GET /cart HTTP/1.1" 200 -
+[pod/shopping-cart-7bf585c6f8-g4mrw/shopping-cart-container] 192.168.49.2 - - [19/Oct/2026 09:49:10] "GET /cart HTTP/1.1" 200 -
+[pod/shopping-cart-7bf585c6f8-g4mrw/shopping-cart-container] 192.168.49.2 - - [19/Oct/2026 09:49:11] "GET /cart HTTP/1.1" 200 -
+[pod/shopping-cart-7bf585c6f8-g4mrw/shopping-cart-container] 192.168.49.2 - - [19/Oct/2026 09:49:12] "GET /cart HTTP/1.1" 200 -
+[pod/shopping-cart-7bf585c6f8-nhrhl/shopping-cart-container]  * Serving Flask app 'shopping_cart'
+[pod/shopping-cart-7bf585c6f8-nhrhl/shopping-cart-container]  * Debug mode: off
+[pod/shopping-cart-7bf585c6f8-nhrhl/shopping-cart-container] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+[pod/shopping-cart-7bf585c6f8-nhrhl/shopping-cart-container]  * Running on all addresses (0.0.0.0)
+[pod/shopping-cart-7bf585c6f8-nhrhl/shopping-cart-container]  * Running on http://127.0.0.1:80
+[pod/shopping-cart-7bf585c6f8-nhrhl/shopping-cart-container]  * Running on http://10.244.1.3:80
+[pod/shopping-cart-7bf585c6f8-nhrhl/shopping-cart-container] [33mPress CTRL+C to quit[0m
+[pod/shopping-cart-7bf585c6f8-nhrhl/shopping-cart-container] 192.168.49.2 - - [19/Oct/2026 09:49:10] "GET /cart HTTP/1.1" 200 -
+[pod/shopping-cart-7bf585c6f8-nhrhl/shopping-cart-container] 192.168.49.2 - - [19/Oct/2026 09:49:10] "[35m[1mPOST /cart HTTP/1.1[0m" 201 -
+[pod/shopping-cart-7bf585c6f8-nhrhl/shopping-cart-container] 192.168.49.2 - - [19/Oct/2026 09:49:11] "GET /cart HTTP/1.1" 200 -
+[pod/shopping-cart-7bf585c6f8-nhrhl/shopping-cart-container] 192.168.49.2 - - [19/Oct/2026 09:49:12] "GET /cart HTTP/1.1" 200 -
+[pod/shopping-cart-7bf585c6f8-rqn7z/shopping-cart-container]  * Serving Flask app 'shopping_cart'
+[pod/shopping-cart-7bf585c6f8-rqn7z/shopping-cart-container]  * Debug mode: off
+[pod/shopping-cart-7bf585c6f8-rqn7z/shopping-cart-container] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+[pod/shopping-cart-7bf585c6f8-rqn7z/shopping-cart-container]  * Running on all addresses (0.0.0.0)
+[pod/shopping-cart-7bf585c6f8-rqn7z/shopping-cart-container]  * Running on http://127.0.0.1:80
+[pod/shopping-cart-7bf585c6f8-rqn7z/shopping-cart-container]  * Running on http://10.244.0.3:80
+[pod/shopping-cart-7bf585c6f8-rqn7z/shopping-cart-container] [33mPress CTRL+C to quit[0m
+[pod/shopping-cart-7bf585c6f8-rqn7z/shopping-cart-container] 10.244.0.1 - - [19/Oct/2026 09:49:11] "GET /cart HTTP/1.1" 200 -
+[pod/shopping-cart-7bf585c6f8-rqn7z/shopping-cart-container] 10.244.0.1 - - [19/Oct/2026 09:49:11] "GET /cart HTTP/1.1" 200 -
+[pod/shopping-cart-7bf585c6f8-rqn7z/shopping-cart-container] 10.244.0.1 - - [19/Oct/2026 09:49:11] "GET /cart HTTP/1.1" 200 -
