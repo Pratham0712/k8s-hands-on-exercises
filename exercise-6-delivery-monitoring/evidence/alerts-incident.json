@@ -1,0 +1,37 @@
+{
+    "status": "success",
+    "data": {
+        "alerts": [
+            {
+                "labels": {
+                    "alertname": "HighPendingDeliveries",
+                    "instance": "delivery-metrics:8000",
+                    "job": "delivery_service",
+                    "severity": "warning"
+                },
+                "annotations": {
+                    "description": "Pending deliveries = 84 (threshold 10) for 15s+.",
+                    "summary": "High pending deliveries"
+                },
+                "state": "firing",
+                "activeAt": "2026-10-19T08:22:33.919052257Z",
+                "value": "8.4e+01"
+            },
+            {
+                "labels": {
+                    "alertname": "HighAverageDeliveryTime",
+                    "instance": "delivery-metrics:8000",
+                    "job": "delivery_service",
+                    "severity": "critical"
+                },
+                "annotations": {
+                    "description": "1-minute average delivery time = 48.88826904642311s (threshold 30s).",
+                    "summary": "High average delivery time"
+                },
+                "state": "firing",
+                "activeAt": "2026-10-19T08:22:38.919052257Z",
+                "value": "4.888826904642311e+01"
+            }
+        ]
+    }
+}

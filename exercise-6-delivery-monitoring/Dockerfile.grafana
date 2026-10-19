@@ -1,2 +1,4 @@
 FROM grafana/grafana:latest
-COPY grafana-datasource.yml /etc/grafana/provisioning/datasources/datasource.yml
+COPY grafana/datasource.yml /etc/grafana/provisioning/datasources/datasource.yml
+COPY grafana/dashboards.yml /etc/grafana/provisioning/dashboards/dashboards.yml
+COPY grafana/delivery-dashboard.json /etc/grafana/dashboards/delivery-dashboard.json

@@ -8,11 +8,11 @@ from prometheus_client import Gauge, Summary, start_http_server
 total_deliveries = Gauge("total_deliveries", "Total number of deliveries")
 pending_deliveries = Gauge("pending_deliveries", "Number of pending deliveries")
 on_the_way_deliveries = Gauge("on_the_way_deliveries", "Number of deliveries on the way")
-# Summary exposes average_delivery_time_sum and average_delivery_time_count
+# A Summary exposes average_delivery_time_sum and average_delivery_time_count
 average_delivery_time = Summary("average_delivery_time", "Delivery time in seconds")
 
 # --- Scenarios ---------------------------------------------------------------
-# normal:   every value stays BELOW the alert thresholds (pending > 10, avg > 30)
+# normal:   every value stays BELOW the alert thresholds (pending > 10, avg > 30s)
 # incident: every value stays ABOVE them, so both alerts must fire
 SCENARIOS = {
     "normal":   {"pending": (2, 9),    "avg_time": (15.0, 28.0)},

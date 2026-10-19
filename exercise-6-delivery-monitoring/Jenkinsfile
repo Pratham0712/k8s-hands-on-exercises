@@ -7,8 +7,8 @@ pipeline {
     }
 
     environment {
-        SRC = '/src'
-        NET = 'monitoring'
+        SRC = '/src'          // exercise folder, bind-mounted read-only into Jenkins
+        NET = 'monitoring'    // user-defined Docker network (container-name DNS)
     }
 
     stages {
@@ -23,12 +23,14 @@ pipeline {
 
         stage('Setup Workspace') {
             steps {
+                deleteDir()   // start every build from an empty workspace
                 sh '''
                     cp "$SRC"/delivery_metrics.py "$SRC"/Dockerfile "$SRC"/.dockerignore \
                        "$SRC"/prometheus.yml "$SRC"/alert_rules.yml "$SRC"/Dockerfile.prometheus \
-                       "$SRC"/grafana-datasource.yml "$SRC"/Dockerfile.grafana \
+                       "$SRC"/Dockerfile.grafana \
                        "$WORKSPACE"/
-                    ls -la "$WORKSPACE"
+                    cp -r "$SRC"/grafana "$WORKSPACE"/
+                    ls -la "$WORKSPACE" "$WORKSPACE"/grafana
                 '''
             }
         }
@@ -36,9 +38,9 @@ pipeline {
         stage('Build Images') {
             steps {
                 sh '''
-                    docker build -t delivery-metrics:latest -t delivery-metrics:$BUILD_NUMBER .
+                    docker build -t delivery-metrics:latest    -t delivery-metrics:$BUILD_NUMBER .
                     docker build -t delivery-prometheus:latest -t delivery-prometheus:$BUILD_NUMBER -f Dockerfile.prometheus .
-                    docker build -t delivery-grafana:latest -t delivery-grafana:$BUILD_NUMBER -f Dockerfile.grafana .
+                    docker build -t delivery-grafana:latest    -t delivery-grafana:$BUILD_NUMBER    -f Dockerfile.grafana .
                 '''
             }
         }
@@ -60,7 +62,7 @@ pipeline {
                     docker run -d --name prometheus --network "$NET" -p 9090:9090 \
                         delivery-prometheus:latest
                     docker run -d --name grafana --network "$NET" -p 3000:3000 \
-                        -v grafana-data:/var/lib/grafana delivery-grafana:latest
+                        delivery-grafana:latest
                 '''
             }
         }
@@ -85,7 +87,15 @@ pipeline {
                         sleep 3
                     done
 
-                    docker exec prometheus wget -qO- http://grafana:3000/api/health
+                    for i in $(seq 1 20); do
+                        if docker exec prometheus wget -qO- http://grafana:3000/api/health | grep -q '"database": *"ok"'; then
+                            echo "Grafana healthy"; break
+                        fi
+                        [ "$i" = 20 ] && { echo "Grafana never became healthy"; exit 1; }
+                        sleep 3
+                    done
+
+                    echo "Running scenario: $(docker logs delivery-metrics 2>&1 | grep -m1 'Scenario:')"
                 '''
             }
         }

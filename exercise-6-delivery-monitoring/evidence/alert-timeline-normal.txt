@@ -1,0 +1,7 @@
+poll 1 (+0s)  no active alerts
+poll 2 (+5s)  no active alerts
+poll 3 (+10s)  no active alerts
+poll 4 (+15s)  no active alerts
+poll 5 (+20s)  no active alerts
+poll 6 (+25s)  no active alerts
+poll 7 (+30s)  no active alerts

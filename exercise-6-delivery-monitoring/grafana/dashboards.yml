@@ -1,0 +1,10 @@
+apiVersion: 1
+providers:
+  - name: zapptto
+    folder: ZAPPTTO
+    type: file
+    disableDeletion: true
+    allowUiUpdates: false
+    options:
+      # Outside /var/lib/grafana on purpose: a volume mounted there would hide it
+      path: /etc/grafana/dashboards

@@ -1,6 +1,0 @@
-total_deliveries 64.0
-pending_deliveries 6.0
-on_the_way_deliveries 15.0
-average_delivery_time_count 2091.0
-average_delivery_time_sum 45217.57226722104
-average_delivery_time_created 1.7922745662621908e+09

@@ -1,0 +1,4 @@
+NAMES              IMAGE                        STATUS         PORTS
+grafana            delivery-grafana:latest      Up 2 minutes   0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+prometheus         delivery-prometheus:latest   Up 2 minutes   0.0.0.0:9090->9090/tcp, [::]:9090->9090/tcp
+delivery-metrics   delivery-metrics:latest      Up 2 minutes   0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp

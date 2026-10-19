@@ -1,4 +1,0 @@
-CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                         NAMES
-525b7c53ae59   delivery-grafana      "/run.sh"                33 minutes ago   Up 33 minutes   0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   grafana
-8c86e8486775   delivery-prometheus   "/bin/prometheus --c…"   33 minutes ago   Up 33 minutes   0.0.0.0:9090->9090/tcp, [::]:9090->9090/tcp   prometheus
-e272fe3c715c   delivery-metrics      "python delivery_met…"   33 minutes ago   Up 33 minutes   0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp   delivery-metrics
